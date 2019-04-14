@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.mikephil.charting.charts.RadarChart
+                android:id="@+id/chart_radar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <com.tomer.fadingtextview.FadingTextView
+                android:id="@+id/fadingTextView_radar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="80dp"
+                android:layout_gravity="bottom"
+                android:gravity="center_horizontal"
+                android:textSize="20dp"
+                android:textColor="#000"
+                app:texts="@array/examples"
+                app:timeout="2000"/>
+
+        </FrameLayout>
+
+</LinearLayout>

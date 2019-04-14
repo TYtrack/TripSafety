@@ -6,12 +6,21 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.example.dell.tripsafety.adapter.TripAdapter;
+import com.example.dell.tripsafety.entity.TabEntity;
+import com.example.dell.tripsafety.utils.Constant;
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -27,10 +36,24 @@ import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class RadarChartActivity extends DemoBase {
 
     private RadarChart chart;
+
+
+    private int[] mIconUnselectIds = {
+            R.mipmap.tab_daily_unselect, R.mipmap.tab_sort_unselect,
+            R.mipmap.tab_bonus_unselect, R.mipmap.tab_about_unselect};
+    private int[] mIconSelectIds = {
+            R.mipmap.tab_daily_select, R.mipmap.tab_sort_select,
+            R.mipmap.tab_bonus_select, R.mipmap.tab_about_select};
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +61,27 @@ public class RadarChartActivity extends DemoBase {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_radarchart);
+        ButterKnife.bind(this);
+
+        //动画
+        Slide slide = new Slide();
+        slide.setDuration(200);
+        getWindow().setEnterTransition(slide);
+
+        Fade fade = new Fade();
+        fade.setDuration(200);
+        getWindow().setExitTransition(fade);
+
+        for (int i = 0; i < Constant.sTabTitles.length; i++) {
+            mTabEntities.add(
+                    new TabEntity(Constant.sTabTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+        }
+
+        TripAdapter tripAdapter=new TripAdapter(getSupportFragmentManager());
+
 
         setTitle("RadarChartActivity");
-
+        /*
         chart = findViewById(R.id.chart1);
         chart.setBackgroundColor(Color.rgb(60, 65, 82));
 
@@ -51,6 +92,10 @@ public class RadarChartActivity extends DemoBase {
         chart.setWebLineWidthInner(1f);
         chart.setWebColorInner(Color.LTGRAY);
         chart.setWebAlpha(100);
+*/
+
+
+
 
         /*
         chart = findViewById(R.id.chart1);
@@ -271,8 +316,13 @@ public class RadarChartActivity extends DemoBase {
         return true;
     }
 
+
+
     @Override
     protected void saveToGallery() {
         saveToGallery(chart, "RadarChartActivity");
     }
+
+
+
 }
