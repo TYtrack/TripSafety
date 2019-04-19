@@ -80,9 +80,10 @@ public class editContacts extends AppCompatActivity implements View.OnClickListe
                     break;
                 case R.id.btn_save:
                     save_contact();
+                    break;
                 case R.id.from_list_contact:
                     loadByConcats();
-
+                    break;
 
             }
     }
@@ -131,7 +132,6 @@ public class editContacts extends AppCompatActivity implements View.OnClickListe
         {
             Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
             startActivityForResult(intent, 0);
-
         }
 
 
@@ -151,8 +151,11 @@ public class editContacts extends AppCompatActivity implements View.OnClickListe
                                     ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME}, null, null, null);
 
                     while (cursor.moveToNext()) {
-                        final String number = cursor.getString(0);
-                        final String name = cursor.getString(1);
+                        final String number_a = cursor.getString(0);
+                        final String name_a = cursor.getString(1);
+                        name.setText(name_a);
+                        number.setText(number_a);
+                        /*
                         AVQuery<AVObject> avQuery = new AVQuery<>("Contact");
                         avQuery.whereEqualTo("user_number", AVUser.getCurrentUser().getMobilePhoneNumber());
                         avQuery.findInBackground(new FindCallback<AVObject>() {
@@ -180,6 +183,7 @@ public class editContacts extends AppCompatActivity implements View.OnClickListe
 
                             }
                         });
+                        */
 
                     }
                     cursor.close();

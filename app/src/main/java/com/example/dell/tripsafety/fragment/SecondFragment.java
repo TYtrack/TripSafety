@@ -1,13 +1,18 @@
 package com.example.dell.tripsafety.fragment;
 
 
+import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.annotation.LongDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -93,23 +98,29 @@ public class SecondFragment extends Fragment {
 		int heightOfHandler;
 		heightOfHandler = getScollHandlerHeight();
 		Log.d("PGN", "initScollLayoutView: 下拉菜单把手的高度为"+heightOfHandler);
-/*
+
+		//获得上部ToolBar的高度
 		int heightOfActionBar;
 		heightOfActionBar = getActionBarHeight();
 		Log.d("PGN", "initScollLayoutView: 顶部菜单栏的高度为"+heightOfActionBar);
-*/
+		if(heightOfActionBar == -88)
+		{
+			heightOfActionBar = 0;
+			Log.e("PGN", "initScollLayoutView: ToolBar获取失败！");
+		}
+
 		//完全打开时最上方的预留位置
 		mScrollLayout.setMinOffset(300);
 
 		//部分打开时的空间大小
 		//mScrollLayout.setMaxOffset(mScrollLayout.getScreenHeight());
-		mScrollLayout.setMaxOffset(500);
+		mScrollLayout.setMaxOffset(heightOfActionBar + heightOfBottomBar + 500);
 
 		Log.d("PGN", "initScollLayoutView: 屏幕高度为"+mScrollLayout.getScreenHeight());
 
 		//可以关闭时，无法关闭的剩余空间的大小
-		mScrollLayout.setExitOffset(heightOfBottomBar + heightOfHandler);
-		//mScrollLayout.setExitOffset(300);
+		mScrollLayout.setExitOffset(heightOfActionBar + heightOfBottomBar + heightOfHandler);
+		//mScrollLayout.setExitOffset(400);
 		mScrollLayout.setIsSupportExit(true);
 
 		//mScrollLayout.setIsSupportExit(true);
@@ -151,18 +162,18 @@ public class SecondFragment extends Fragment {
 		return heightOfTextHandler;
 	}
 
-	/*
+
 	private int getActionBarHeight()
 	{
-		int heightOfActionBar;
-
-		MainActivity mainActivity;
-		mainActivity = (MainActivity) getActivity();
-
-		heightOfActionBar = mainActivity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
-		return  heightOfActionBar;
+		int actionBarHeight;
+		TypedValue tv =new TypedValue();
+		if (getActivity().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+			actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getActivity().getResources().getDisplayMetrics());
+			return actionBarHeight;
+		}
+		return -88;
 	}
-*/
+
 
 	private int getViewHeight(View view)
 	{

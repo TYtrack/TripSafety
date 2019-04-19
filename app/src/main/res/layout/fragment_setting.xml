@@ -106,21 +106,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
+
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/card_Contact"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="5dp"
-                    app:contentPaddingLeft="15dp"
-                    app:contentPaddingRight="15dp"
+                    android:layout_marginLeft="10dp"
+                    app:contentPaddingLeft="12dp"
+                    app:contentPaddingRight="12dp"
                     android:layout_height="wrap_content">
                     <LinearLayout
                         android:layout_marginTop="8dp"
@@ -129,9 +130,10 @@
                         android:orientation="horizontal"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:background="@mipmap/contact_1"
-                            android:layout_height="match_parent" />
+                            />
                         <TextView
                             android:layout_width="wrap_content"
                             android:text=" 紧急人"
@@ -146,11 +148,11 @@
                 
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
-
+                    android:id="@+id/card_Protect"
                     android:layout_marginLeft="25dp"
 
-                    app:contentPaddingLeft="15dp"
-                    app:contentPaddingRight="15dp"
+                    app:contentPaddingLeft="12dp"
+                    app:contentPaddingRight="12dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -161,9 +163,11 @@
                         android:orientation="horizontal"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:background="@mipmap/contact_1"
-                            android:layout_height="match_parent" />
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@mipmap/contact_1" />
+
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:text=" 守护者"
@@ -177,9 +181,9 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginRight="5dp"
-                    app:contentPaddingLeft="15dp"
-                    app:contentPaddingRight="15dp"
+                    android:layout_marginRight="10dp"
+                    app:contentPaddingLeft="12dp"
+                    app:contentPaddingRight="12dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -190,9 +194,9 @@
                         android:layout_marginBottom="7dp"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:background="@mipmap/contact_1"
-                            android:layout_height="match_parent" />
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@mipmap/contact_1" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:text=" 紧急人"
@@ -372,7 +376,20 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/list_item_indicator" />
             </LinearLayout>
+
+            <android.support.v7.widget.SwitchCompat
+                android:text="按三次电源键发送呼救短信"
+                android:id="@+id/three_switch"
+                android:typeface="normal"
+                android:switchMinWidth="40dp"
+                android:switchPadding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/threeSwitch"/>
         </LinearLayout>
+
+
+
     </android.support.v4.widget.NestedScrollView>
 
 
