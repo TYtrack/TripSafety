@@ -63,28 +63,31 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.github.medyo:fancybuttons:1.9.1'
     implementation files('libs/BaiduLBS_Android.jar')
+
+    //pick photo
+    implementation 'cn.finalteam:galleryfinal:1.4.8.7'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    //选择框
+    implementation 'com.baoyz.actionsheet:library:1.1.4'
+
     //RxJava
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     api 'io.reactivex.rxjava2:rxjava:2.1.9'
     api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     //倒计时
     implementation 'com.github.iwgang:countdownview:2.1.6'
-
-
-    implementation 'com.azhon:suspension-fab:1.1.0'
+    //implementation 'com.azhon:suspension-fab:1.1.0'
     //IM
-
     // LeanCloud 基础包
-    implementation('cn.leancloud.android:avoscloud-sdk:4.7.10')
+    implementation 'cn.leancloud.android:avoscloud-sdk:4.7.10'
     // 推送与即时通讯需要的包
     implementation('cn.leancloud.android:avoscloud-push:4.7.10@aar') { transitive = true }
-
     //软件设置框
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-
     //List
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+    implementation project(':suspension-fab')
 }

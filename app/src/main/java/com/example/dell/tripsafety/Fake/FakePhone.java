@@ -52,6 +52,15 @@ public class FakePhone extends AppCompatActivity implements View.OnClickListener
         mediaPlayer = new MediaPlayer();
     }
 
+    @Override
+    protected void onDestroy() {
+        // TODO 自动生成的方法存根
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+    }
 
     @Override
     public void onClick(View v) {

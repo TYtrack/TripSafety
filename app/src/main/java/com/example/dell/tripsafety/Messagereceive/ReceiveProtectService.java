@@ -81,7 +81,7 @@ public class ReceiveProtectService extends Service {
             manager.createNotificationChannel(channel);
             Notification notification = new Notification.Builder(this, id)
                     .setCategory(Notification.CATEGORY_MESSAGE)
-                    .setSmallIcon(R.mipmap.icon_test_1)
+                    .setSmallIcon(R.drawable.bule102)
                     .setContentTitle("消息")
                     .setContentText(s1)
                     .setContentIntent(pendingIntent)
@@ -96,7 +96,7 @@ public class ReceiveProtectService extends Service {
                     .setContentTitle("消息")
                     .setContentText(s1)
                     .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.mipmap.icon_test_1)
+                    .setSmallIcon(R.drawable.bule102)
                     .build();
             manager.notify(1,notification);
         }

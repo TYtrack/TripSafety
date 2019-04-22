@@ -27,6 +27,7 @@ import com.azhon.suspensionfab.OnFabClickListener;
 import com.azhon.suspensionfab.SuspensionFab;
 import com.example.dell.tripsafety.Fake.FakePhone;
 import com.example.dell.tripsafety.Fake.FakeVoice;
+import com.example.dell.tripsafety.HelpOther.HelpFromOther;
 import com.example.dell.tripsafety.Messagereceive.ReceiveClass;
 import com.example.dell.tripsafety.Messagereceive.ReceiveProtectService;
 import com.example.dell.tripsafety.adapter.TripAdapter;
@@ -35,6 +36,7 @@ import com.example.dell.tripsafety.fragment.ChooseProtectFragment;
 import com.example.dell.tripsafety.fragment.CircleFragment;
 import com.example.dell.tripsafety.fragment.FirstFragment;
 import com.example.dell.tripsafety.fragment.FourFragment;
+import com.example.dell.tripsafety.fragment.ProtectedFragment;
 import com.example.dell.tripsafety.fragment.RadarFragment;
 import com.example.dell.tripsafety.fragment.SecondFragment;
 import com.example.dell.tripsafety.fragment.SettingFragment;
@@ -59,13 +61,16 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
 
     //五个内容界面
     //private FirstFragment mFirstFragment;
-    //private CircleFragment mCircleFragment;
-
+    private CircleFragment mCircleFragment;
     private ChooseProtectFragment mChooseProtectFragment;
     private SecondFragment mSecondFragment;
     private RadarFragment mRadarFragment;
     private FourFragment mFourthFragment;
     private SettingFragment mSettingFragment;
+    private ProtectedFragment mProtectedFragment;
+
+    //是否要进入画圈（1）
+    public int isChoose;
 
     //默认选择第一个fragment
     private int lastSelectedPosition = 0;
@@ -88,6 +93,7 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_avtivity);
         ButterKnife.bind(this);
+        isChoose=0;
         Log.e("TripActivity","log2");
         new ReceiveClass().jerryReceiveMsgFromTom();
         startService(new Intent(this, ReceiveProtectService.class));
@@ -117,25 +123,24 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
     }
 
     public void setFloatingButton(){
-
         FabAttributes collection = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#2096F3"))
                 .setSrc(getResources().getDrawable(R.mipmap.icon_test_2))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                //.setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(1)
                 .build();
         final FabAttributes callTo = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#FF9800"))
                 .setSrc(getResources().getDrawable(R.mipmap.icon_test_1))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                //.setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(2)
                 .build();
         final FabAttributes fake_phone= new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#03A9F4"))
                 .setSrc(getResources().getDrawable(R.mipmap.icon_test_3))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                //.setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(3)
                 .build();
@@ -143,7 +148,7 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
         final FabAttributes  fake_call= new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#FF9800"))
                 .setSrc(getResources().getDrawable(R.mipmap.icon_test_4))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                //.setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(4)
                 .build();
@@ -176,6 +181,8 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
             startActivity(intent);
         } else if (tag.equals(4)) {
             msg = "第四个";
+            Intent intent5=new Intent(TripAvtivity.this, HelpFromOther.class);
+            startActivity(intent5);
         }
         Toast.makeText(this, "点击了" + msg, Toast.LENGTH_SHORT).show();
     }
@@ -257,57 +264,7 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
         mBottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
             @Override
             public void onTabSelected(int position) {
-                lastSelectedPosition = position;//每次点击赋值
-                //开启事务
-                transaction = mFragmentManager.beginTransaction();
-
-                hideFragment(transaction);
-
-                switch (position) {
-                    case 0:
-                        if (mChooseProtectFragment == null) {
-                            mChooseProtectFragment = new ChooseProtectFragment();
-                            transaction.add(R.id.fragment_content, mChooseProtectFragment);
-                        } else {
-                            transaction.show(mChooseProtectFragment);
-                        }
-                        // transaction.replace(R.id.tb, firstFragment);
-                        break;
-                    case 1:
-                        if (mSecondFragment == null) {
-                            mSecondFragment = new SecondFragment();
-                            transaction.add(R.id.fragment_content, mSecondFragment);
-                        } else {
-                            transaction.show(mSecondFragment);
-                        }
-                        break;
-                    case 2:
-                        if (mRadarFragment == null) {
-                            mRadarFragment = new RadarFragment();
-                            transaction.add(R.id.fragment_content, mRadarFragment);
-                        } else {
-                            transaction.show(mRadarFragment);
-                        }
-                        break;
-                    case 3:
-                        if (mFourthFragment == null) {
-                            mFourthFragment = new FourFragment();
-                            transaction.add(R.id.fragment_content, mFourthFragment);
-                        } else {
-                            transaction.show(mFourthFragment);
-                        }
-                        break;
-                    case 4:
-                        if (mSettingFragment== null){
-                            mSettingFragment = new SettingFragment();
-                            transaction.add(R.id.fragment_content, mSettingFragment);
-                        }else{
-                            transaction.show(mSettingFragment);
-                        }
-                        break;
-                }
-                // 事务提交
-                transaction.commit();
+                chooseFragment(position);
             }
             @Override
             public void onTabUnselected(int position) {
@@ -319,8 +276,92 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
     }
 
 
+    public void chooseFragment(int position){
+        lastSelectedPosition = position;//每次点击赋值
+        //开启事务
+        transaction = mFragmentManager.beginTransaction();
+        hideFragment(transaction);
+        switch (position) {
+            case 0:
+                if (mChooseProtectFragment == null) {
+                    mChooseProtectFragment = new ChooseProtectFragment();
+                    transaction.add(R.id.fragment_content, mChooseProtectFragment);
+                } else {
+                    if(isChoose==1)
+                        transaction.show(mCircleFragment);
+                    else if(isChoose==2)
+                        transaction.show(mProtectedFragment);
+                    else
+                        transaction.show(mChooseProtectFragment);
+                }
+                // transaction.replace(R.id.tb, firstFragment);
+                break;
+            case 1:
+                if (mSecondFragment == null) {
+                    mSecondFragment = new SecondFragment();
+                    transaction.add(R.id.fragment_content, mSecondFragment);
+                } else {
+                    transaction.show(mSecondFragment);
+                }
+                break;
+            case 2:
+                if (mRadarFragment == null) {
+                    mRadarFragment = new RadarFragment();
+                    transaction.add(R.id.fragment_content, mRadarFragment);
+                } else {
+                    transaction.show(mRadarFragment);
+                }
+                break;
+            case 3:
+                if (mFourthFragment == null) {
+                    mFourthFragment = new FourFragment();
+                    transaction.add(R.id.fragment_content, mFourthFragment);
+                } else {
+                    transaction.show(mFourthFragment);
+                }
+                break;
+            case 4:
+                if (mSettingFragment== null){
+                    mSettingFragment = new SettingFragment();
+                    transaction.add(R.id.fragment_content, mSettingFragment);
+                }else{
+                    transaction.show(mSettingFragment);
+                }
+                break;
+            case 5:
+                //地图画圈
+                if (mCircleFragment== null){
+                    mCircleFragment = new CircleFragment();
+                    transaction.add(R.id.fragment_content, mCircleFragment);
+                }else{
+                    transaction.show(mCircleFragment);
+                }
+                break;
+            case 6:
+                //被监护人的地图
+                if (mProtectedFragment== null){
+                    mProtectedFragment = new ProtectedFragment();
+                    transaction.add(R.id.fragment_content, mProtectedFragment);
+                }else{
+                    transaction.show(mProtectedFragment);
+                }
+                break;
 
-	/**
+        }
+        // 事务提交
+        transaction.commit();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(TripAvtivity.this,ReceiveProtectService.class);
+        /** 退出Activity是，停止服务 */
+        stopService(intent);
+    }
+
+    /**
 	 * 设置默认开启的fragment
 	 */
 	private void setDefaultFragment(int defaultFragment) {
@@ -329,9 +370,9 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
 
 		switch (defaultFragment){
 			case 1:
-				mChooseProtectFragment = new ChooseProtectFragment();
-				transaction.add(R.id.fragment_content, mChooseProtectFragment);
-				break;
+                mChooseProtectFragment = new ChooseProtectFragment();
+                transaction.add(R.id.fragment_content, mChooseProtectFragment);
+                break;
 			case 2:
 				mSecondFragment = new SecondFragment();
 				transaction.add(R.id.fragment_content, mSecondFragment);
@@ -359,6 +400,12 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
      * @param transaction
      */
     private void hideFragment(FragmentTransaction transaction) {
+        if (mProtectedFragment!=null){
+            transaction.hide(mProtectedFragment);
+        }
+        if (mCircleFragment!=null){
+            transaction.hide(mCircleFragment);
+        }
         if (mChooseProtectFragment != null) {
             transaction.hide(mChooseProtectFragment);
         }
@@ -374,6 +421,7 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
         if (mSettingFragment != null){
             transaction.hide(mSettingFragment);
         }
+
     }
 
 

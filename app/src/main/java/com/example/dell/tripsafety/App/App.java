@@ -3,6 +3,7 @@ package com.example.dell.tripsafety.App;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.util.Log;
 
 import com.avos.avoscloud.*;
@@ -41,6 +42,10 @@ public class App extends Application {
 
     SDKInitializer.initialize(this);
     SDKInitializer.setCoordType(CoordType.BD09LL);
+    // android 7.0系统解决拍照的问题
+    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+    StrictMode.setVmPolicy(builder.build());
+    builder.detectFileUriExposure();
 
   }
 

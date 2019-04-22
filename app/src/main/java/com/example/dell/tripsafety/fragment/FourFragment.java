@@ -53,7 +53,6 @@ public class FourFragment extends Fragment {
 		phone=getActivity().findViewById(R.id.phone_four);
 		message=getActivity().findViewById(R.id.phone_message);
 		submit=getActivity().findViewById(R.id.button_phone);
-
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -97,4 +96,38 @@ public class FourFragment extends Fragment {
 			}
 		});
 	}
+
+	public void sendMessage(final String phone_num, final long longitude , final long latitude){
+		AVIMClient my_client = AVIMClient.getInstance(AVUser.getCurrentUser().getMobilePhoneNumber());
+		// 与服务器连接
+		my_client.open(new AVIMClientCallback() {
+			@Override
+			public void done(AVIMClient client, AVIMException e) {
+				if (e == null) {
+					// 创建与Jerry之间的对话
+					client.createConversation(Arrays.asList(phone_num), "Map_Contact", null, new AVIMConversationCreatedCallback() {
+
+						@Override
+						public void done(AVIMConversation conversation, AVIMException e) {
+							if (e == null) {
+								AVIMTextMessage msg = new AVIMTextMessage();
+								msg.setText(""+longitude+" "+latitude);
+								// 发送消息
+								conversation.sendMessage(msg, new AVIMConversationCallback() {
+
+									@Override
+									public void done(AVIMException e) {
+										if (e == null) {
+											Log.d("Map_Contact", "发送成功！");
+										}
+									}
+								});
+							}
+						}
+					});
+				}
+			}
+		});
+	}
+
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.example.dell.tripsafety.Protect.ProtectActivity;
 import com.example.dell.tripsafety.R;
+import com.example.dell.tripsafety.TripAvtivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +60,16 @@ public class ChooseProtectFragment extends Fragment implements View.OnClickListe
                 startActivity(intent1);
                 break;
             case R.id.enter_circle:
-                replaceCircle(new CircleFragment());
+                TripAvtivity tripAvtivity=(TripAvtivity)getActivity();
+                tripAvtivity.chooseFragment(5);
+                tripAvtivity.isChoose=1;
+                //replaceCircle(new CircleFragment());
+                break;
+            case R.id.undraw_doll_play:
+                TripAvtivity tripAvtivity2=(TripAvtivity)getActivity();
+                tripAvtivity2.chooseFragment(6);
+                tripAvtivity2.isChoose=2;
+                //replaceCircle(new CircleFragment());
                 break;
         }
     }

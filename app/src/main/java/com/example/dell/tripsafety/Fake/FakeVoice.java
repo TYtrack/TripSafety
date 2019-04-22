@@ -55,7 +55,8 @@ public class FakeVoice extends AppCompatActivity implements View.OnClickListener
         Voice voice;
         AVQuery<AVObject> query = new AVQuery<>("_File");
         query.whereEqualTo("provider","qiniu");
-
+        query.whereStartsWith("name", "60");
+        query.whereMatches("name","^((?!png).)*$");
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e)

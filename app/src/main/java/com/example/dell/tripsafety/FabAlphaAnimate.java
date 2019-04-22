@@ -9,6 +9,7 @@ import com.azhon.suspensionfab.ExpandOrientation;
 import com.azhon.suspensionfab.SuspensionFab;
 import com.azhon.suspensionfab.manager.AnimationManager;
 
+
 public class FabAlphaAnimate extends AnimationManager {
 	public FabAlphaAnimate(SuspensionFab fabView) {
 		super(fabView);

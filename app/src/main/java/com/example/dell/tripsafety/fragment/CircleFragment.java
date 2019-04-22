@@ -26,6 +26,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.LogUtil;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -57,6 +63,7 @@ import com.example.dell.tripsafety.Location.OnRecyclerviewItemClickListener;
 import com.example.dell.tripsafety.Protect.ProtectActivity;
 import com.example.dell.tripsafety.R;
 import com.example.dell.tripsafety.TimingCall.TimingCall;
+import com.example.dell.tripsafety.TripAvtivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
@@ -216,7 +223,7 @@ public class CircleFragment extends Fragment implements View.OnClickListener  , 
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String trim = edt_alias.getText().toString().trim();
+                final String trim = edt_alias.getText().toString().trim();
                 if (trim.equals("")) {
                     Toast.makeText(getActivity(), "别名不能为空！", Toast.LENGTH_SHORT).show();
                     return;
@@ -231,16 +238,73 @@ public class CircleFragment extends Fragment implements View.OnClickListener  , 
                 baidumap.addOverlay(ooText);
                 polygonMap.put(trim, polygon);
                 aliasname.add(trim);
-                polygon = null;
-                Log.e("aaa", "多边形有几个：" + polygonMap.size());
-                Log.e("aaa", "别名有：" + aliasname.toString());
-                for (int j = 0; j < markers.size(); j++) {
-                    markers.get(j).remove();
-                }
-                //polygons.add(polygon);
-                //polygon = null;
-                latlngs.clear();
-                ids.clear();
+                //
+                final AVQuery<AVObject> query = new AVQuery<>("Protect");
+                query.whereEqualTo("mobilePhoneNumber", AVUser.getCurrentUser().getMobilePhoneNumber());
+
+                // 如果这样写，第二个条件将覆盖第一个条件，查询只会返回 priority = 1 的结果
+                query.findInBackground(new FindCallback<AVObject>() {
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+                        if (list.size()==0)
+                            return;
+                        AVObject zpo=list.get(0);
+                        final String s1=zpo.getString("protected_num");
+
+                        LogUtil.log.e("gyu",s1);
+
+                        //删除已有的
+                        final AVQuery<AVObject> query = new AVQuery<>("Circle");
+                        query.whereEqualTo("protected_num", s1);
+                        // 如果这样写，第二个条件将覆盖第一个条件，查询只会返回 priority = 1 的结果
+                        query.findInBackground(new FindCallback<AVObject>() {
+                            @Override
+                            public void done(List<AVObject> list, AVException e) {
+                                AVObject AV_polygon;
+                                if(list==null ||list.size()==0){
+                                    AV_polygon =new AVObject();
+                                }else
+                                {
+                                    AV_polygon=list.get(0);
+                                    int old_size=AV_polygon.getInt("size");
+                                    for (int i=0;i<old_size;i++)
+                                    {
+                                        AV_polygon.put("lati_"+i,null);//
+                                        AV_polygon.put("long_"+i,null);//
+                                    }
+                                }
+                                AV_polygon.put("size", size);//
+                                LatLng like = null;
+                                for (int ske = 0; ske < ids.size(); ske++) {
+                                    Log.e("!!size:",""+ids.size());
+                                    String z=ids.get(ske);
+                                    Log.e("NMsl","a");
+                                    like = latlngs.get(z);
+                                    AV_polygon.put("lati_"+ske, like.latitude);//
+                                    AV_polygon.put("long_"+ske, like.longitude);//
+                                }
+                                AV_polygon.put("polygon_name",trim);
+                                AV_polygon.put("protect_num", AVUser.getCurrentUser().getMobilePhoneNumber());
+                                AV_polygon.put("protected_num",s1);
+                                AV_polygon.saveInBackground();// 保存到服务端
+                                polygon = null;
+                                Log.e("aaa", "多边形有几个：" + polygonMap.size());
+                                Log.e("aaa", "别名有：" + aliasname.toString());
+                                for (int j = 0; j < markers.size(); j++) {
+                                    markers.get(j).remove();
+                                }
+                                //polygons.add(polygon);
+                                //polygon = null;
+                                latlngs.clear();
+                                ids.clear();
+
+                            }
+                        });
+                    }
+                });
+
+                //
+
             }
         });
 
@@ -300,9 +364,15 @@ public class CircleFragment extends Fragment implements View.OnClickListener  , 
             case R.id.location:
                 //点击定位按钮，返回自己的位置
                 isFirstLocation = true;
+                //navigateTo();
                 showInfo("返回自己位置");
                 break;
             case R.id.button_to_2:
+                TripAvtivity tripAvtivity=(TripAvtivity)getActivity();
+                tripAvtivity.isChoose=0;
+                tripAvtivity.chooseFragment(0);
+
+                //123456
                 //删除
                 //Intent intent=new Intent(getActivity(),Main2Activity.class);
                 //startActivity(intent);
@@ -513,6 +583,7 @@ public class CircleFragment extends Fragment implements View.OnClickListener  , 
         marker = (Marker) baidumap.addOverlay(option);
         markers.add(marker);
         String id = marker.getId();
+        Log.e("id:",id);
         latlngs.put(id, new LatLng(latitude, longitude));
         ids.add(id);
     }
@@ -679,7 +750,6 @@ public class CircleFragment extends Fragment implements View.OnClickListener  , 
     private OnRecyclerviewItemClickListener onRecyclerviewItemClickListener = new OnRecyclerviewItemClickListener() {
         @Override
         public void onItemClickListener(View v, int position) {
-
             SharedPreferences pref_1 = getActivity().getSharedPreferences("area_List", MODE_PRIVATE);
             //获得点击item的地图名
             String hs=locationList.get(position).getName();

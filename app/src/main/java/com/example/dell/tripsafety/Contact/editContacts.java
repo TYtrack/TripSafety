@@ -102,7 +102,6 @@ public class editContacts extends AppCompatActivity implements View.OnClickListe
                 if (list.size()==0){
                     todo = new AVObject("Contact");
 
-
                 }else {
                     todo = list.get(0);
                 }
