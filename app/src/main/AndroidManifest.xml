@@ -66,7 +66,6 @@
             android:value="DhYHgVC3VEYcl9BBqXgm52ZaQt1mr7KM" />
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".RadarChartActivity" />
         <activity android:name=".TripAvtivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>

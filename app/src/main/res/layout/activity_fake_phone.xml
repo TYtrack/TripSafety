@@ -38,7 +38,7 @@
             android:layout_height="64dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="69dp"
-            android:layout_marginR="10dp"
+            android:layout_marginRight="10dp"
             fancy:fb_focusColor="#313131"
             fancy:fb_iconPaddingLeft="0dp"
             fancy:fb_iconPaddingRight="0dp"

@@ -66,7 +66,7 @@
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
             android:paddingTop="8dp"
-            android:text="开始画圈 "
+            android:text="划定安全区域"
             android:textColor="#fff"
             android:textSize="18sp" />
     </LinearLayout>
