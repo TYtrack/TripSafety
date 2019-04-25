@@ -19,7 +19,6 @@ public class VoiceAdapter extends BaseQuickAdapter<Voice, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, Voice item) {
         //可链式调用赋值
         helper.setText(R.id.tv_title, item.getTitle())
-                .setText(R.id.tv_content, item.getContent())
                 .setImageResource(R.id.iv_img, R.mipmap.icon_test_2);
 
         //获取当前条目position

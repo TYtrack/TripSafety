@@ -13,9 +13,11 @@ import com.example.dell.tripsafety.R;
 
 import java.io.IOException;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class FakePhone extends AppCompatActivity implements View.OnClickListener{
-    private Button start;
-    private Button pause;
+    private FancyButton start;
+    private FancyButton pause;
     boolean isVirating;
 
     private MediaPlayer mediaPlayer;
