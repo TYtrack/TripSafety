@@ -1,6 +1,7 @@
 package com.example.dell.tripsafety.HelpOther;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,6 +54,8 @@ public class HelpFromOther extends AppCompatActivity {
     HorizontalListView mLvPhoto;
     @BindView(R.id.help_button)
     Button help_button;
+    @BindView(R.id.see_HelpList)
+    Button see_HelpList_Button;
     @BindView(R.id.help_ed1)
     EditText help_ed1;
     @BindView(R.id.help_ed2)
@@ -205,6 +208,14 @@ public class HelpFromOther extends AppCompatActivity {
         //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         mLocationClient.start();
+
+        see_HelpList_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HelpFromOther.this,HelpListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         initImageLoader(this);
         //initFresco();

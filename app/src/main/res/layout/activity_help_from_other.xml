@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HelpOther.HelpFromOther">
+    <Button
+        android:id="@+id/see_HelpList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/text_help"
         android:text="向身边的人求助"

@@ -1,0 +1,32 @@
+package com.example.dell.tripsafety.HelpOther;
+
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.dell.tripsafety.Fake.Voice;
+import com.example.dell.tripsafety.R;
+
+import java.util.List;
+
+public class HelpAdapter extends BaseQuickAdapter<HelpMessage, BaseViewHolder> {
+    public HelpAdapter(@LayoutRes int layoutResId, @Nullable List<HelpMessage> data) {
+        super(layoutResId, data);
+    }
+
+
+    @Override
+    protected void convert(BaseViewHolder helper, HelpMessage item) {
+        //可链式调用赋值
+        helper.setText(R.id.tv_title, item.getTitle())
+                .setImageResource(R.id.iv_img, R.mipmap.icon_test_2);
+
+        //获取当前条目position
+        //int position = helper.getLayoutPosition();
+    }
+
+
+
+
+}

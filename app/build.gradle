@@ -91,7 +91,6 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     implementation project(':suspension-fab')
 
-
     //气泡UI
     implementation 'com.github.lguipeng:BubbleView:1.0.1'
 
