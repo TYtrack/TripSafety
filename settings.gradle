@@ -1,1 +1,1 @@
-include ':app',":suspension-fab"
+include ':app',":suspension-fab",":library"
