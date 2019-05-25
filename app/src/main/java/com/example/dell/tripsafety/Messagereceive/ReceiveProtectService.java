@@ -37,7 +37,7 @@ public class ReceiveProtectService extends Service {
         Log.e("zzz%^&Q*","开启了");
         AVIMMessageManager.registerDefaultMessageHandler(new CustomMessageHandler());
         new ReceiveClass().jerryReceiveMsgFromTom();
-        showNotifictionIcon("NMSL");
+        showNotifictionIcon("您所绑定的被守护者长时间未大范围活动，可能处于不安全");
 
     }
 

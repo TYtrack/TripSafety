@@ -143,7 +143,6 @@ public class RadarFragment extends BaseFragment {
         FTV.setTexts(texts); //You can use an array resource or a string array as the parameter
     }
 
-
     private void setData() {
 
         float mul = 80;
@@ -163,7 +162,7 @@ public class RadarFragment extends BaseFragment {
             entries2.add(new RadarEntry(val2));
         }
 
-        RadarDataSet set1 = new RadarDataSet(entries1, "Last Week");
+        RadarDataSet set1 = new RadarDataSet(entries1, "犯罪核密度");
         //set1.setColor(Color.rgb(103, 110, 129));
         set1.setColor(Color.parseColor("#9EAAD4"));
         set1.setFillColor(Color.rgb(103, 110, 129));

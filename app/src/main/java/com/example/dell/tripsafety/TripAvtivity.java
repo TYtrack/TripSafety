@@ -246,16 +246,16 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
                 .setBarBackgroundColor("#FFFFFF") // 背景颜色
                 .setFirstSelectedPosition(lastSelectedPosition)
 
-                .addItem(new BottomNavigationItem(R.drawable.ic_1, "Home")
-                        .setActiveColor("#FF3333"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_2, "Books")
-                        .setActiveColor("#FF3333"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_3, "Music")
-                        .setActiveColor("#FF3333"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_4, "Movies")
-                        .setActiveColor("#FF3333"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_5, "Games")
-                        .setActiveColor("#FF3333"))
+                .addItem(new BottomNavigationItem(R.drawable.icon_1, "守护")
+                        .setActiveColor("#1296db"))
+                .addItem(new BottomNavigationItem(R.drawable.icon_2, "地图")
+                        .setActiveColor("#1296db"))
+                .addItem(new BottomNavigationItem(R.drawable.icon_3, "实时")
+                        .setActiveColor("#1296db"))
+                .addItem(new BottomNavigationItem(R.drawable.icon_4, "语音")
+                        .setActiveColor("#1296db"))
+                .addItem(new BottomNavigationItem(R.drawable.icon_5, "我的")
+                        .setActiveColor("#1296db"))
                 .initialise();
 
 		setDefaultFragment(defaultFragment);
