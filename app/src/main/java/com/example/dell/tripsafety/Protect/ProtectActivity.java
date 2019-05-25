@@ -81,6 +81,8 @@ public class ProtectActivity extends AppCompatActivity implements View.OnClickLi
                     Toasty.success(ProtectActivity.this,"发送成功", Toast.LENGTH_SHORT).show();
                     /* 请求成功 */
                 } else {
+                    Toasty.error(ProtectActivity.this,"发送失败", Toast.LENGTH_SHORT).show();
+
                     /* 请求失败 */
                 }
             }
