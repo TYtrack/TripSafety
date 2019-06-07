@@ -1,6 +1,4 @@
 package com.example.dell.tripsafety.fragment;
-
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -20,16 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
 import com.example.dell.tripsafety.R;
+import com.example.dell.tripsafety.utils.Voice_Forensics;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -88,7 +85,7 @@ public class FourFragment extends Fragment {
 	private double volume;
 	private EditText setDb;
 	private TextView dbstatus;
-
+	Voice_Forensics vf=new Voice_Forensics();
 
 	public FourFragment() {
 		// Required empty public constructor
@@ -220,6 +217,7 @@ public class FourFragment extends Fragment {
 								mRecord.read(data_send, 0, 8000);
 								dos.write(data_send);
 								dos.flush();
+								vf.add_data(data_send);
 								readsize++;
 							}
 							//开启新线程等待结果
