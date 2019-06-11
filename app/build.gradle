@@ -91,4 +91,5 @@ dependencies {
     //气泡UI
     implementation 'com.github.lguipeng:BubbleView:1.0.1'
     implementation project(':library')
+    implementation 'com.github.ideastudios:Vad:1.0.1'
 }
