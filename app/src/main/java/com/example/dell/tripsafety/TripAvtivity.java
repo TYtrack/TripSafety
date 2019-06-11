@@ -30,6 +30,7 @@ import com.example.dell.tripsafety.Fake.FakeVoice;
 import com.example.dell.tripsafety.HelpOther.HelpFromOther;
 import com.example.dell.tripsafety.Messagereceive.ReceiveClass;
 import com.example.dell.tripsafety.Messagereceive.ReceiveProtectService;
+import com.example.dell.tripsafety.TimingCall.TimingCall;
 import com.example.dell.tripsafety.adapter.TripAdapter;
 import com.example.dell.tripsafety.entity.TabEntity;
 import com.example.dell.tripsafety.fragment.ChooseProtectFragment;
@@ -181,7 +182,7 @@ public class TripAvtivity extends AppCompatActivity  implements OnFabClickListen
             startActivity(intent);
         } else if (tag.equals(4)) {
             msg = "第四个";
-            Intent intent5=new Intent(TripAvtivity.this, HelpFromOther.class);
+            Intent intent5=new Intent(TripAvtivity.this, TimingCall.class);
             startActivity(intent5);
         }
         Toast.makeText(this, "点击了" + msg, Toast.LENGTH_SHORT).show();

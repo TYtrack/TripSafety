@@ -37,7 +37,7 @@ public class ReceiveProtectService extends Service {
         Log.e("zzz%^&Q*","开启了");
         AVIMMessageManager.registerDefaultMessageHandler(new CustomMessageHandler());
         new ReceiveClass().jerryReceiveMsgFromTom();
-        showNotifictionIcon("您所绑定的被守护者长时间未大范围活动，可能处于不安全");
+        showNotifictionIcon("您所绑定的被守护者已脱离安全范围，可能处于不安全");
 
     }
 
@@ -47,9 +47,11 @@ public class ReceiveProtectService extends Service {
         @Override
         public void onMessage(AVIMMessage message, AVIMConversation conversation, AVIMClient client){
             if(message instanceof AVIMTextMessage){
+                /*
                 Toasty.success(getApplicationContext(),((AVIMTextMessage)message).getText(), Toast.LENGTH_SHORT).show();
                 showNotifictionIcon(((AVIMTextMessage)message).getText());
                 Log.e("aaaaaa Tom & Jerry",((AVIMTextMessage)message).getText());
+                */
             }
         }
 

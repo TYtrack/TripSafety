@@ -9,6 +9,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
@@ -34,8 +35,11 @@ public class TimingCall extends AppCompatActivity implements CountdownView.OnCou
     CountdownView mCvCountdownViewTest6;
     @BindView(R.id.start_timing)
     Button start_timing;
+    @BindView(R.id.message_content)
+    EditText messageContent;
 
-    private List<String> numbers=new ArrayList<>();
+
+    final List<String> numbers=new ArrayList<>();
     long time;
 
 
@@ -94,7 +98,7 @@ public class TimingCall extends AppCompatActivity implements CountdownView.OnCou
     @Override
     public void onEnd(CountdownView cv) {
         SmsManager smsManager = SmsManager.getDefault();
-        String SMScontent="102";
+        String SMScontent=messageContent.getText().toString();
         Log.e("num",""+numbers.size());
         for(String num :numbers)
         {

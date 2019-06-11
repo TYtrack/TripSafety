@@ -3,30 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".TimingCall.TimingCall">
-    <cn.iwgang.countdownview.CountdownView
-        android:id="@+id/cv_countdownViewTest6"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/sel_btn"
-        app:isShowDay="false"
-        app:isShowHour="true"
-        app:isShowMillisecond="false"
-        app:isShowMinute="true"
-        app:isShowSecond="true"
-        app:suffixGravity="center"
-        app:suffixTextColor="#000000"
-        app:suffixTextSize="20sp"
-        app:timeTextColor="#000000"
-        app:timeTextSize="20sp"/>
-
-    <Button
-        android:id="@+id/start_timing"
-        android:text="开始倒计时"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/contact_num"
+        android:hint="联系人电话号码"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/message_content"
+        android:hint="默认发送消息"
+        android:text="【守护者】李明的紧急联络人您好，系统检测到李明当前未及时取消定时防护预警功能，可能处于危险状态，请及时确认李明当前的安全状况！"
+        android:layout_width="match_parent"
+        android:lines="5"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/cv_countdownViewTest6"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/sel_btn"
+            app:isShowDay="false"
+            app:isShowHour="true"
+            app:isShowMillisecond="false"
+            app:isShowMinute="true"
+            app:isShowSecond="true"
+            app:suffixGravity="center"
+            app:suffixTextColor="#000000"
+            app:suffixTextSize="20sp"
+            app:timeTextColor="#000000"
+            app:timeTextSize="20sp"/>
+
+        <Button
+            android:id="@+id/start_timing"
+            android:text="开始倒计时"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
 
 </LinearLayout>

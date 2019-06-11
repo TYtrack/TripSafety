@@ -126,7 +126,7 @@
             android:exported="true" />
 
         <activity android:name=".HelpOther.HelpFromOther" />
-        <activity android:name=".HelpOther.HelpListActivity"></activity>
+        <activity android:name=".HelpOther.HelpListActivity" />
     </application>
 
 </manifest>

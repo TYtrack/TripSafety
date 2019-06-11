@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.dell.tripsafety.R;
 import com.example.dell.tripsafety.RadarMarkerView;
@@ -27,6 +28,8 @@ import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 import com.tomer.fadingtextview.FadingTextView;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class RadarFragment extends BaseFragment {
     private RadarChart chart;
@@ -70,6 +73,7 @@ public class RadarFragment extends BaseFragment {
         chartShow();
 
         textShow();
+        Toasty.success(getActivity(),"当前位置：循礼门地铁站", Toast.LENGTH_LONG).show();
 
     }
 
@@ -136,7 +140,7 @@ public class RadarFragment extends BaseFragment {
 
     public void textShow(){
         Log.e("textShow","log1");
-        String[] texts = {"text1","text2","text3"};
+        String[] texts = {"114.292607,30.590998","114.304645,30.613596","114.292607,30.590998"};
         FTV =(FadingTextView)getActivity().findViewById(R.id.fadingTextView_radar);
 
         Log.e("textShow","log2");
