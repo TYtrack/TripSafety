@@ -38,10 +38,6 @@ public class ProtectActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.text_bind_number)
     EditText text_bind_number;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

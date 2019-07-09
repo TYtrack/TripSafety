@@ -123,13 +123,20 @@ public class ProtectedFragment extends Fragment {
         onMapInit();
 
         timer = new Timer();
-        timer.schedule(new TimerTask(){
-            public void run(){
+        TimerTask task = new TimerTask() {
+            private int count;
+            @Override
+            public void run() {
                 sendMessage("13164127008",LONGITUDE,LATITUDE);
-                inPolygon(LONGITUDE,LATITUDE);
-                //timer.cancel();
+                if (!inPolygon(LONGITUDE,LATITUDE))
+                {
+                    //该点超出范围，发短信。
+
+                    timer.cancel();
+                }
             }
-        }, 5*1000,5*1000);
+        };
+        timer.schedule(task, 5*1000,5*1000);
 
         requestLocation();
         addPolygon();
@@ -258,7 +265,7 @@ public class ProtectedFragment extends Fragment {
     }
 
 
-    //判断dian是否在多边形内
+    //判断点是否在多边形内
     public boolean inPolygon(double longitude_1,double latitude_1) {
 
         String name = null;
