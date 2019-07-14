@@ -386,6 +386,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/threeSwitch"/>
+
+            <android.support.v7.widget.SwitchCompat
+                android:text="打开5分钟无网络发送警报"
+                android:id="@+id/five_xinhao_switch"
+                android:typeface="normal"
+                android:switchMinWidth="40dp"
+                android:switchPadding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/threeSwitch"/>
         </LinearLayout>
 
 

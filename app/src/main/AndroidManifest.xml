@@ -48,12 +48,8 @@
     <!-- 手机震动 -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!-- 录音-->
+    <!-- 录音 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
-
-
-
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- 基础模块 END -->
@@ -134,20 +130,22 @@
             android:exported="true" />
 
         <activity android:name=".HelpOther.HelpFromOther" />
-
-        <activity android:name=".HelpOther.HelpListActivity"></activity>
+        <activity android:name=".HelpOther.HelpListActivity" />
 
         <meta-data
             android:name="com.baidu.speech.APP_ID"
-            android:value="16411367"/>
+            android:value="16411367" />
         <meta-data
             android:name="com.baidu.speech.API_KEY"
-            android:value="TsvpCVfYHDLVWOGgddktauQW"/>
+            android:value="TsvpCVfYHDLVWOGgddktauQW" />
         <meta-data
             android:name="com.baidu.speech.SECRET_KEY"
-            android:value="AzV8vED0Sur22Z1iwcjXfywdG8wbr4W0"/>
-
->>>>>>> b3ab96207f287561ee4678147a5929568a7f21b2
+            android:value="AzV8vED0Sur22Z1iwcjXfywdG8wbr4W0" />
+        >>>>>>> b3ab96207f287561ee4678147a5929568a7f21b2
+        <service
+            android:name=".XinHao.XinHaoService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -25,6 +25,7 @@ import com.avos.avoscloud.AVUser;
 import com.example.dell.tripsafety.AddUserActivity;
 import com.example.dell.tripsafety.Protect.ProtectActivity;
 import com.example.dell.tripsafety.R;
+import com.example.dell.tripsafety.XinHao.XinHaoService;
 import com.example.dell.tripsafety.listenpowerbutton.listenPowerKeyService;
 import com.example.dell.tripsafety.user_profile.UserProfileSettingActivity;
 
@@ -52,7 +53,8 @@ public class SettingFragment extends Fragment {
     @BindView(R.id.three_switch)
     SwitchCompat threeSwitchCompat;
 
-
+    @BindView(R.id.five_xinhao_switch)
+    SwitchCompat five_min_Switch;
 
     public static SettingFragment newInstance(){
 
@@ -111,13 +113,50 @@ public class SettingFragment extends Fragment {
             }
         });
 
+    //
+        SharedPreferences preference2=getActivity().getSharedPreferences("oneKey",getActivity().MODE_PRIVATE);
+        if(preference2.getString("five_min_Key","off").equals("on"))
+        {
+            threeSwitchCompat.setChecked(true);
 
+        }
+        five_min_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switch (buttonView.getId())
+                {
+                    case R.id.five_xinhao_switch:
+                        if(isChecked){
+                            //记住状态
+                            SharedPreferences.Editor editor=getActivity().getSharedPreferences("oneKey",getActivity().MODE_PRIVATE).edit();
+                            editor.putString("five_min_Key","on");
+                            editor.apply();
+                            Intent i=new Intent(getActivity(), XinHaoService.class);
+                            getActivity().startService(i);
+                        }
+                        else {
+                            SharedPreferences.Editor editor=getActivity().getSharedPreferences("oneKey",getActivity().MODE_PRIVATE).edit();
+                            editor.putString("five_min_Key","off");
+                            editor.apply();
+                            Intent intent2 = new Intent(getActivity(), XinHaoService.class);
+                            getActivity().stopService(intent2);// 关闭服务
+
+
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        });
+
+        //
         SharedPreferences preference=getActivity().getSharedPreferences("oneKey",getActivity().MODE_PRIVATE);
         if(preference.getString("threeKey","off").equals("on"))
         {
             threeSwitchCompat.setChecked(true);
         }
-
         threeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -138,8 +177,6 @@ public class SettingFragment extends Fragment {
                             getActivity().startService(i);
                         }
                         else {
-
-
                             SharedPreferences.Editor editor=getActivity().getSharedPreferences("oneKey",getActivity().MODE_PRIVATE).edit();
                             editor.putString("threeKey","off");
                             editor.apply();

@@ -115,6 +115,7 @@ public class listenPowerKeyService extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
 
     }
+
     @Override
     public int onStartCommand(Intent intent, int flag, int startId)
     {

@@ -6,16 +6,114 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baidu.mapapi.map.MapView
+        android:id="@+id/baidu_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="second"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clickable="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="false"
+            android:layout_marginBottom="10dip">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="起点城市：" />
+                <EditText
+                    android:id="@+id/start_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxEms="5"
+                    android:textSize="16sp"
+                    android:text="北京"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="城市地点：" />
+                <AutoCompleteTextView
+                    android:id="@+id/start_place"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:maxEms="12"
+                    android:text="西二旗地铁站" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/end_city_layout"
+                android:padding="1dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="终点城市：" />
+                <EditText
+                    android:id="@+id/end_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxEms="5"
+                    android:textSize="16sp"
+                    android:text="北京"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="城市地点：" />
+                <AutoCompleteTextView
+                    android:id="@+id/end_place"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:maxEms="12"
+                    android:text="百度科技园" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dip">
+
+            <Button
+                android:id="@+id/walk_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="步行搜索"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:onClick="searchButtonProcess"/>
+
+            <Button
+                android:id="@+id/net_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网络测试"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:onClick="netTransitionTest"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
 
     <com.yinglan.scrolllayout.ScrollLayout
         android:id="@+id/scroll_down_layout"
@@ -69,7 +167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="功能一"/>
+                            android:text="自定义路线"/>
 
                         <Button
                             style="@style/Widget.AppCompat.Button"
@@ -77,7 +175,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="功能二"/>
+                            android:text="路径显示"/>
 
                         <Button
                             style="@style/Widget.AppCompat.Button"
@@ -85,7 +183,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="功能三"/>
+                            android:text="附近人求助"/>
                     </LinearLayout>
 
                     <LinearLayout
